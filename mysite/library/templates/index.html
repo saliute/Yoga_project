@@ -1,15 +1,15 @@
 {% extends "base.html" %}
 {% block content %}
 
-<h1>Rajono biblioteka</h1>
-<p>Sveiki atvykę į knygų rojų!</p>
-<p>Šiuo metu turime</p>
+<h1>YOGA EVERYWHERE!</h1>
+<p>WELCOME TO YOGAONLINE!</p>
+<p>Please Choose the best lesson for you!</p>
 <ul>
-    <li>Knygų: {{ num_books }}</li>
-    <li>Egzempliorių: {{ num_instances }} </li>
-    <li>Laisvų egzempliorių: {{ num_instances_available }} </li>
-    <li>Autorių: {{ num_authors }}</li>
+    <li>Lessons: {{ num_books }}</li>
+    <li>Dates and prices: {{ num_instances }} </li>
+    <li>Free time: {{ num_instances_available }} </li>
+    <li>Teachers: {{ num_authors }}</li>
 </ul>
-<p>Sveiki, {{ user }}</p>
-<p>Cia jus lankotes: {{ num_visits}}</p>
+<p>NAMASTE, {{ user }}</p>
+<p>You are visiting this page: {{ num_visits}} time</p>
 {% endblock %}
