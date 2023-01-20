@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>{{ book.title }} </h1>
+<p>Autorius: <a href="{% url 'author-detail' book.author.id %}">{{ book.author }}</a></p>
+<p>Aprašymas: {{ book.summary }}  </p>
+<p>ISBN: {{ book.isbn }} </p>
+<p>Žanras: {{ book.genre.all|join:", " }}</p>
+
+<h4>Kopijos:</h4>
+{% for book_inst_obj in book.book_instance_set.all %}
+{% for eilute_obj in uzsakymas.uzsakymoeilute_set.all %}
+<hr>
+<p>{{ book_inst_obj.get_status_display }}</p>
+<p>{{ book_inst_obj.due_back }}</p>
+<p>{{ book_inst_obj.id }}</p>
+{% endfor %}
+{% endblock %}
