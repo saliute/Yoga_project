@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>{{ lesson.title }} </h1>
+<p>Teacher: <a href="{% url 'teacher-detail' lesson.teacher.id %}">{{ lesson.teacher }}</a></p>
+<p>Description: {{ lesson.summary }}  </p>
+<!--<p>ISBN: {{ book.isbn }} </p>-->
+<p>Type: {{ lesson.type.all|join:", " }}</p>
+
+<h4>Copy:</h4>
+{% for lesson_inst_obj in lesson.lesson_instance_set.all %}
+{% for eilute_obj in uzsakymas.uzsakymoeilute_set.all %}
+<hr>
+<p>{{ lesson_inst_obj.get_status_display }}</p>
+<p>{{ lesson_inst_obj.due_back }}</p>
+<p>{{ lesson_inst_obj.id }}</p>
+{% endfor %}
+{% endblock %}

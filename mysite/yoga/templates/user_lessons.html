@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Our booked lessons:</h1>
+{% if lessoninstance_list %}
+<ul>
+    {% for lessoninst_obj in lessoninstance_list %}
+    <li>{{ lessoninst_obj }}</li>
+
+    {% endfor %}
+</ul>
+{% else %}
+<p>At the moment you haven't booked any lessons!</p>
+{% endif %}
+
+{% endblock %}

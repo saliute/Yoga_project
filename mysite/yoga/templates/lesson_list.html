@@ -2,7 +2,7 @@
 {% block content %}
 {% load static %}
 
-<h1>Knygų sąrašas</h1>
+<h1>Lessons list</h1>
 <div class="pagination">
     <span class="step-links">
         {% if page_obj.has_previous %}
@@ -20,25 +20,25 @@
         {% endif %}
     </span>
 </div>
-{% if book_list %}
+{% if lesson_list %}
 <div class="row">
-    {% for book_obj in book_list %}
+    {% for lesson_obj in lesson_list %}
     <div class="col-md4 d-flex align-items-stretch">
         <div class="card mb-4 shadow-sm" style="width: 14rem;">
-            {% if book_obj.cover %}
-                <img src="{{ book_obj.cover.url }}" class="card-img-top">
+            {% if lesson_obj.cover %}
+                <img src="{{ lesson_obj.cover.url }}" class="card-img-top">
             {% else %}
                 <img src="{% static 'img/no-image.png' %}" class="card-img-top">
             {% endif %}
             <div class="card-body">
                 <h6 class="card-subtitle mb-2 text-muted">{{ book_obj.author }}</h6>
-                <p class="card-text"><a class="card-link" href="{{ book_obj.id }}">{{ book_obj.title }}</a></p>
+                <p class="card-text"><a class="card-link" href="{{ lesson_obj.id }}">{{ lesson_obj.title }}</a></p>
             </div>
         </div>
     </div>
     {% endfor %}
 </div>
 {% else %}
-<p>Bibliotekoje knygų nėra.</p>
+<p>It is no lessons </p>
 {% endif %}
 {% endblock %}

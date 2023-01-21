@@ -30,7 +30,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    "library",
+    "yoga",
     "tinymce",
     "django.contrib.admin",
     "django.contrib.auth",
@@ -121,7 +121,7 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 # my custom config
 
-MEDIA_ROOT = os.path.join(BASE_DIR, "library/media")
+MEDIA_ROOT = os.path.join(BASE_DIR, "yoga/media")
 
 MEDIA_URL = "/media/"
 

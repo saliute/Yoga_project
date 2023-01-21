@@ -13,7 +13,7 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.CreateModel(
-            name="Author",
+            name="Teacher",
             fields=[
                 (
                     "id",
@@ -24,15 +24,15 @@ class Migration(migrations.Migration):
                         verbose_name="ID",
                     ),
                 ),
-                ("first_name", models.CharField(max_length=100, verbose_name="Vardas")),
-                ("last_name", models.CharField(max_length=100, verbose_name="Pavardė")),
+                ("first_name", models.CharField(max_length=100, verbose_name="Name")),
+                ("last_name", models.CharField(max_length=100, verbose_name="Surname")),
             ],
             options={
                 "ordering": ["last_name", "first_name"],
             },
         ),
         migrations.CreateModel(
-            name="Book",
+            name="Lesson",
             fields=[
                 (
                     "id",
@@ -43,28 +43,28 @@ class Migration(migrations.Migration):
                         verbose_name="ID",
                     ),
                 ),
-                ("title", models.CharField(max_length=200, verbose_name="Pavadinimas")),
+                ("title", models.CharField(max_length=200, verbose_name="Title")),
                 (
                     "summary",
                     models.TextField(
-                        help_text="Trumpas knygos aprašymas",
+                        help_text="Short lesson description",
                         max_length=1000,
-                        verbose_name="Aprašymas",
+                        verbose_name="Description",
                     ),
                 ),
-                ("isbn", models.CharField(max_length=13, verbose_name="ISBN")),
+                # ("isbn", models.CharField(max_length=13, verbose_name="ISBN")),
                 (
-                    "author",
+                    "teacher",
                     models.ForeignKey(
                         null=True,
                         on_delete=django.db.models.deletion.SET_NULL,
-                        to="library.author",
+                        to="yoga.teacher",
                     ),
                 ),
             ],
         ),
         migrations.CreateModel(
-            name="Genre",
+            name="Type",
             fields=[
                 (
                     "id",
@@ -78,21 +78,21 @@ class Migration(migrations.Migration):
                 (
                     "name",
                     models.CharField(
-                        help_text="Įveskite knygos žanrą",
+                        help_text="Entry type description",
                         max_length=200,
-                        verbose_name="Pavadinimas",
+                        verbose_name="Title",
                     ),
                 ),
             ],
         ),
         migrations.CreateModel(
-            name="BookInstance",
+            name="LessonInstance",
             fields=[
                 (
                     "id",
                     models.UUIDField(
                         default=uuid.uuid4,
-                        help_text="Unikalus knygos kopijos ID",
+                        help_text="Unique lesson code",
                         primary_key=True,
                         serialize=False,
                     ),
@@ -100,7 +100,7 @@ class Migration(migrations.Migration):
                 (
                     "due_back",
                     models.DateField(
-                        blank=True, null=True, verbose_name="Bus prieinama"
+                        blank=True, null=True, verbose_name="Will be available"
                     ),
                 ),
                 (
@@ -108,22 +108,22 @@ class Migration(migrations.Migration):
                     models.CharField(
                         blank=True,
                         choices=[
-                            ("a", "Administruojama"),
-                            ("p", "Paimta"),
-                            ("g", "Galima paimti"),
-                            ("r", "Rezervuota"),
+                            ('p', 'Planning'),
+                            ('a', 'Not available'),
+                            ('b', 'Book'),
+                            ('r', 'Reserved'),
                         ],
-                        default="a",
+                        default="p",
                         help_text="Status",
                         max_length=1,
                     ),
                 ),
                 (
-                    "book",
+                    "lesson",
                     models.ForeignKey(
                         null=True,
                         on_delete=django.db.models.deletion.SET_NULL,
-                        to="library.book",
+                        to="yoga.lesson",
                     ),
                 ),
             ],
@@ -132,10 +132,10 @@ class Migration(migrations.Migration):
             },
         ),
         migrations.AddField(
-            model_name="book",
-            name="genre",
+            model_name="lesson",
+            name="type",
             field=models.ManyToManyField(
-                help_text="Išrinkite žanrą/us šiai knygai", to="library.genre"
+                help_text="Entry lesson title", to="yoga.type"
             ),
         ),
     ]

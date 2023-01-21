@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>{{ lesson.title }} </h1>
+<p><strong>Teacher: </strong><a href="{% url 'teacher-detail' lesson.teacher.id %}">{{ lesson.teacher }}</a></p>
+<p><strong>Description: </strong>{{ lesson.summary }} </p>
+<!--<p><strong>ISBN: </strong>{{ book.isbn }} </p>-->
+<p><strong>Type: </strong>{{ lesson.type.all|join:", " }}</p>
+
+<h4>Copy:</h4>
+{% for lesson_inst_obj in lesson.lessoninstance_set.all %}
+<hr>
+
+<p class="{% if lesson_inst_obj.status == 'g' %}text-success
+{% elif lesson_inst_obj.status == 'p' %}text-danger
+{% else %}text-warning
+{% endif %}">{{ lesson_inst_obj.get_status_display }}</p>
+
+{% if lesson_inst_obj.status != 'a' %}
+<p>{{ lesson_inst_obj.due_back }}</p>
+{% endif %}
+
+<p class="text-muted">{{ lesson_inst_obj.id }}</p>
+{% endfor %}
+{% endblock %}

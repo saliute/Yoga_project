@@ -7,12 +7,12 @@ import tinymce.models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('library', '0004_bookinstance_reader_alter_book_cover'),
+        ('yoga', '0004_lessoninstance_student_alter_lesson_cover'),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='author',
+            model_name='teacher',
             name='description',
             field=tinymce.models.HTMLField(),
         ),

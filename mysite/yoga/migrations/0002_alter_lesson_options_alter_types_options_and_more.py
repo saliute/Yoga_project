@@ -7,34 +7,34 @@ import django.db.models.deletion
 class Migration(migrations.Migration):
 
     dependencies = [
-        ("library", "0001_initial"),
+        ("yoga", "0001_initial"),
     ]
 
     operations = [
         migrations.AlterModelOptions(
-            name="book",
+            name="lesson",
 
-            options={"verbose_name": "Knyga", "verbose_name_plural": "Knygos"},
+            options={"verbose_name": "Lesson", "verbose_name_plural": "Lessons"},
         ),
         migrations.AlterModelOptions(
-            name="genre",
-            options={"verbose_name": "Žanras", "verbose_name_plural": "Žanrai"},
+            name="type",
+            options={"verbose_name": "Type", "verbose_name_plural": "Types"},
         ),
         migrations.AddField(
-            model_name="author",
+            model_name="teacher",
             name="description",
             field=models.TextField(
-                default="bio", max_length=2000, verbose_name="Aprašymas"
+                default="bio", max_length=2000, verbose_name="Description"
             ),
         ),
         migrations.AlterField(
-            model_name="book",
-            name="author",
+            model_name="lesson",
+            name="teacher",
             field=models.ForeignKey(
                 null=True,
                 on_delete=django.db.models.deletion.SET_NULL,
-                related_name="books",
-                to="library.author",
+                related_name="lessons",
+                to="yoga.teacher",
             ),
         ),
     ]
