@@ -54,7 +54,7 @@ class LessonInstance(models.Model):
     LOAN_STATUS = (
         ('p', 'Planning'),
         ('a', 'Not available'),
-        ('b', 'Book'),
+        ('b', 'You can book'),
         ('r', 'Reserved')
     )
 

@@ -32,7 +32,7 @@ class LessonInstanceAdmin(admin.ModelAdmin):
     list_editable = ('due_back', 'status', 'student')  # nurodom kad į list_display įtraukti stulpeliai gali būti redaguojami
 
     fieldsets = (  # sukuria atskirus tabus laukams (šie laukai rodomi defaultu, čia sukuriamas tik padalinimas)
-        ('General', {'fields': ('id', 'lessons',)}),  # General, Availability - mūsų sukurti tabų pavadinimai, žodynuose
+        ('General', {'fields': ('id', 'lesson',)}),  # General, Availability - mūsų sukurti tabų pavadinimai, žodynuose
         ('Availability', {'fields': ('status', 'due_back', 'student')})  # raktuose fields nurodoma kokie laukai bus kokiam tabe
     )
 
