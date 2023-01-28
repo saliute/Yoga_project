@@ -11,6 +11,9 @@ urlpatterns = [
     path('lessons/<int:pk>', views.LessonDetailView.as_view(), name='lesson-detail'),
     path('search/', views.search, name='search'),
     path('accounts/', include('django.contrib.auth.urls')),
-    path('mylessons/', views.LoanedBooksByUserListView.as_view(), name='my-borrowed')
+    path('mylessons/', views.LoanedLessonsByUserListView.as_view(), name='my-lessons'),
+    path('blog/', views.blog, name='blog-detail'),
+    path('register/', views.register, name='register'),
+    path('book/', views.booklesson, name='book-lesson'),
 
 ]

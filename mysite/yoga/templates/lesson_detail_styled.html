@@ -6,11 +6,11 @@
 <!--<p><strong>ISBN: </strong>{{ book.isbn }} </p>-->
 <p><strong>Type: </strong>{{ lesson.type.all|join:", " }}</p>
 
-<h4>Copy:</h4>
+<h4>Choose the best time for you</h4>
 {% for lesson_inst_obj in lesson.lessoninstance_set.all %}
 <hr>
 
-<p class="{% if lesson_inst_obj.status == 'g' %}text-success
+<p class="{% if lesson_inst_obj.status == 'b' %}text-success
 {% elif lesson_inst_obj.status == 'p' %}text-danger
 {% else %}text-warning
 {% endif %}">{{ lesson_inst_obj.get_status_display }}</p>

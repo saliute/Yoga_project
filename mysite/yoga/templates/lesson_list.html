@@ -31,8 +31,17 @@
                 <img src="{% static 'img/no-image.png' %}" class="card-img-top">
             {% endif %}
             <div class="card-body">
-                <h6 class="card-subtitle mb-2 text-muted">{{ book_obj.author }}</h6>
+                <h6 class="card-subtitle mb-2 text-muted">{{ lesson_obj.teacher }}</h6>
                 <p class="card-text"><a class="card-link" href="{{ lesson_obj.id }}">{{ lesson_obj.title }}</a></p>
+                {% if lesson_obj.price %}
+                   <h6 class="card-subtitle mb-2 text-muted">{{ lesson_obj.price }} €</h6>
+                {% else %}
+                   <h6 class="card-subtitle mb-2 text-muted">FREE</h6>
+                {% endif %}
+                <form action="{% url 'book-lesson' %}" method="post">
+                {% csrf_token %}
+                    <input type="submit" value="Book Lesson">
+                </form>
             </div>
         </div>
     </div>

@@ -8,7 +8,6 @@ from datetime import date
 from tinymce.models import HTMLField
 
 
-
 # Create your models here.
 class Type(models.Model):
     name = models.CharField('Title', max_length=200, help_text='Entry lesson title')
@@ -26,8 +25,9 @@ class Lesson(models.Model):
     teacher = models.ForeignKey('Teacher', on_delete=models.SET_NULL, null=True, related_name='lessons')
     summary = models.TextField('Description', max_length=1000, help_text='Short lesson description')
     # isbn = models.CharField('ISBN', max_length=13)
-    type = models.ManyToManyField(Type, help_text='Please choose type of this lesson')
+    type = models.ManyToManyField('Type', help_text='Please choose type of this lesson')
     cover = models.ImageField('Viršelis', upload_to='covers', null=True)
+    price = models.IntegerField('Price', null=True)
 
     def display_type(self):
         return '; '.join([type.name for type in self.type.all()])
@@ -85,7 +85,7 @@ class Teacher(models.Model):
     first_name = models.CharField('Name', max_length=100)
     last_name = models.CharField('Surname', max_length=100)
     # description = models.TextField('Aprašymas', max_length=2000, default='bio')
-    description = HTMLField()
+    description = HTMLField(default="cia turi buti pamokos aprasymas")
 
     def display_lessons(self):
         return ', '.join([lesson.title for lesson in self.lessons.all()][:3]) + "..."
@@ -100,3 +100,14 @@ class Teacher(models.Model):
 
     def __str__(self):
         return f'{self.last_name}, {self.first_name}'
+
+
+class Blog(models.Model):
+    title = models.CharField('Title', max_length=200, null=True)
+    date_created = models.DateTimeField(auto_now_add=True)
+    content = models.CharField('Description', max_length=1000, help_text='Short lesson description')
+    cover = models.ImageField('Viršelis', upload_to='covers', null=True)
+
+    def __str__(self):
+        return self.title
+

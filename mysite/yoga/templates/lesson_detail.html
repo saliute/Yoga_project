@@ -6,7 +6,7 @@
 <!--<p>ISBN: {{ book.isbn }} </p>-->
 <p>Type: {{ lesson.type.all|join:", " }}</p>
 
-<h4>Copy:</h4>
+<h4>Description:</h4>
 {% for lesson_inst_obj in lesson.lesson_instance_set.all %}
 {% for eilute_obj in uzsakymas.uzsakymoeilute_set.all %}
 <hr>

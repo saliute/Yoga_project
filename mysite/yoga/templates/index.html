@@ -2,13 +2,17 @@
 {% block content %}
 
 <h1>YOGA EVERYWHERE!</h1>
-<p>WELCOME TO YOGAONLINE!</p>
+<p><b>WELCOME TO YOGAONLINE!</b></p>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/d-v5AUBkIpU" title="YouTube video player"
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        allowfullscreen></iframe>
 <p>Please Choose the best lesson for you!</p>
 <ul>
-    <li>Lessons: {{ num_books }}</li>
-    <li>Dates and prices: {{ num_instances }} </li>
-    <li>Available lessons: {{ num_instances_available }} </li>
-    <li>Teachers: {{ num_authors }}</li>
+    <li>Lessons: {{ num_lessons }}</li>
+    <li>Dates and prices: {{ num_instances }}</li>
+    <li>Available lessons: {{ num_instances_available }}</li>
+    <li>Teachers: {{ num_teachers }}</li>
 </ul>
 <p>NAMASTE, {{ user }}</p>
 <p>You are visiting this page: {{ num_visits}} time</p>

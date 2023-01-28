@@ -1,10 +1,14 @@
 from django.core.paginator import Paginator
 from django.db.models import Q
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.views import generic
+from django.contrib.auth.forms import User
+from django.views.decorators.csrf import csrf_protect
+from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.decorators import login_required
 
-from .models import Teacher, Lesson, LessonInstance
+from .models import Teacher, Lesson, LessonInstance, Blog
 
 
 def index(request):
@@ -13,15 +17,13 @@ def index(request):
     num_instances = LessonInstance.objects.all().count()  # suskaičiuojam knygų kopijas
 
     # suskaičiuojam laisvas knygas(statusas g)
-    num_instances_available = LessonInstance.objects.filter(status__exact="g").count()
+    num_instances_available = LessonInstance.objects.filter(status__exact="p").count()
 
     # suskaičiuojam autorius
     num_teachers = Teacher.objects.all().count()
 
     num_visits = request.session.get('num_visits', 1)
     request.session['num_visits'] = num_visits + 1
-
-
 
     context = {  # šablono konteksto kintamasis
         'num_lessons': num_lessons,
@@ -54,7 +56,7 @@ def teacher(request, teacher_id):
 
 class LessonListView(generic.ListView):
     model = Lesson  # pagal modelio pav. autosukuriamas book_list kintamasis(visi objektai iš klasės) perduodamas į šabloną
-    paginate_by = 4
+    paginate_by = 3
     template_name = 'lesson_list.html'
     # context_object_name = 'my_book_list' galime pasikeisti automatinį konteksto kintamąjį(book_list) į custom pavadinimą
 
@@ -73,11 +75,56 @@ def search(request):
 
     return render(request, "search.html", {"lessons": search_results, "query": query})
 
-class LoanedBooksByUserListView(LoginRequiredMixin, generic.ListView):
+
+class LoanedLessonsByUserListView(LoginRequiredMixin, generic.ListView):
     model = LessonInstance
     template_name = "user_lessons.html"
 
-
     def get_queryset(self):
-        return LessonInstance.objects.filter(reader=self.request.user).filter(status__exact='p').order_by("due_back")
+        # return LessonInstance.objects.filter(student=self.request.user).filter(status__exact='p').order_by("due_back")
+        return LessonInstance.objects.filter(student=self.request.user).order_by("due_back")
 
+
+def blog(request):
+    paginator = Paginator(Blog.objects.all(), 2)
+    page_number = request.GET.get('page')
+    paged_blog = paginator.get_page(page_number)
+    context = {
+        'blog': paged_blog
+    }
+    return render(request, 'blog.html', context=context)
+
+
+@csrf_protect
+def register(request):
+    if request.method == "POST":
+        # Pasiimam reiksmes is registracijos formos lauku
+        username = request.POST["username"]
+        email = request.POST["email"]
+        password1 = request.POST["password"]
+        password2 = request.POST["password2"]
+        # ar sutampa ivesti passwordai
+        if password1 == password2:
+            if User.objects.filter(username=username).exists():
+                messages.error(request, f"User name {username} exist")
+                return redirect("register")
+            else:
+                # ar nera tokio pacio emailo
+                if User.objects.filter(email=email).exists():
+                    messages.error(request, f"Emai {email} already exist")
+                    return redirect("register")
+                else:
+                    # taskas kai viskas tvarkoje, patikrinimai praeiti, kuriam nauja useri
+                    User.objects.create_user(username=username, email=email, password=password1)
+                    messages.info(request, f"User {username} succsesfull registrated")
+                    return redirect("login")
+        else:
+            messages.error(request, "Passwords not the same")
+            return redirect("register")
+    return render(request, "register.html")
+
+
+@login_required
+def booklesson(request):
+    # Logic for creating and saving a new book object
+    return render(request, "book_lesson.html")

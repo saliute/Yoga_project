@@ -1,11 +1,13 @@
 {% extends "base.html" %}
 {% block content %}
-<h1>Our booked lessons:</h1>
+<h1>Your all chosen lessons:</h1>
 {% if lessoninstance_list %}
 <ul>
     {% for lessoninst_obj in lessoninstance_list %}
-    <li>{{ lessoninst_obj }}</li>
-
+    <li class="{% if lessoninst_obj.is_overdue %}text-danger{% endif %}"><a
+            href="{% url 'lesson-detail' lessoninst_obj.lesson.pk %}">{{ lessoninst_obj.lesson.title }}</a>
+        {{ lessoninst_obj.due_back }}
+    </li>
     {% endfor %}
 </ul>
 {% else %}

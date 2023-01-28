@@ -66,7 +66,11 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'teachers' %}">Teachers</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'blog-detail' %}">Blog</a>
+                </li>
                 {% if user.is_authenticated %}
+                 <li class="nav-item"><a class="nav-link" href="{% url 'my-lessons'%}">My lessons</a></li>
                 <li class="nav-item"><a class="nav-link" href="#">
                     <svg class="bi bi-person" width="1.5em" height="1.5em" viewBox="0 0 16 16" fill="currentColor"
                          xmlns="http://www.w3.org/2000/svg">
@@ -75,12 +79,11 @@
                               clip-rule="evenodd"/>
                     </svg>
                     {{ user.get_username }}</a></li>
-                <li class="nav-item"><a class="nav-link" href="#">My lessons</a></li>
-                <li class="nav-item"><a class="nav-link" href="{% url 'logout'%}?next=/yoga">LOG OUT</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'logout'%}">LOG OUT</a></li>
                 {% else %}
                 <li class="nav-item"><a class="nav-link" href="{% url 'login'%}?next={{request.path}}">LOG IN</a>
                 </li>
-                <li class="nav-item"><a class="nav-link" href="#">Registruotis</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'register'%}">Register</a></li>
                 {% endif %}
             </ul>
 
@@ -97,7 +100,7 @@
                         name="query"
                 />
                 <button class="btn btn-outline-info my-2 my-sm-0" type="submit">
-                    Ieškoti
+                    Search
                 </button>
             </form>
         </div>

@@ -11,11 +11,6 @@ padding: 0;
 list-style: none;
 }
 
-.card-img-top {
-height: 300px;
-width: auto;
-}
-
 .card {
 display: inline-block;
 height: 300px;
@@ -28,6 +23,13 @@ margin-top: 20px;
 float: left;
 }
 
+.blog-img-post {
+height: 300px;
+width: auto;
+margin-right: 15px;
+margin-bottom: 15px;
+}
+
 .puslapiai{
 margin-top: 100px;
 float: left;
@@ -37,7 +39,4 @@ float: left;
 margin-top: 20px;
 }
 
-.card {
-display: inline-block;
-height: 300px;
-ma
+

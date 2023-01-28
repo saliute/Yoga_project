@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block content %}
+{% load static %}
+<h1 xmlns:border="http://www.w3.org/1999/xhtml">Blog</h1>
+<p>Thoughts about life: </p>
+{% for blog_obj in blog %}
+<div>
+<p><b>
+    {{blog_obj}}</b></p>
+    {% if blog_obj.cover %}
+        <img src="{{ blog_obj.cover.url }}"  style="width:350px">
+    {% else %}
+        <img src="{% static 'img/no-image.png' %}" class="blog-img-post">
+    {% endif %}
+    <p>{{ blog_obj.content  }}</p>
+    <br></br>
+</div>
+{% endfor %}
+
+{% endblock %}
