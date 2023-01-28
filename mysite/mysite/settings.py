@@ -125,7 +125,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, "yoga/media")
 
 MEDIA_URL = "/media/"
 
-LOGIN_REDIRECT_URL = "/"
+LOGIN_REDIRECT_URL = "/yoga/"
 
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
 EMAIL_HOST = 'mail.pythonkursas2.smshostingas.lt'

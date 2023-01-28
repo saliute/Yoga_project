@@ -40,6 +40,7 @@
                 {% endif %}
                 <form action="{% url 'book-lesson' %}" method="post">
                 {% csrf_token %}
+                    <input type="hidden" id="lessonID" name="lessonID" value="{{ lesson_obj.id }}">
                     <input type="submit" value="Book Lesson">
                 </form>
             </div>

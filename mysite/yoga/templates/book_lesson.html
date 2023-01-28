@@ -1,16 +1,6 @@
 {% extends "base.html" %}
 {% block content %}
-<h1>Search {{query}} results:</h1>
-{% if lessons %}
-<ul>
-    {% for lesson_obj in lessons %}
-        <li>
-        <a href="{% url 'lesson-detail' lesson_obj.id %}">{{ lesson_obj.title }}</a>
-            {{ lesson_obj.teacher }}
-        </li>
-    {% endfor %}
-</ul>
-{% else %}
-<p>Not founded nothing.. </p>
-{% endif %}
+<h1> Book Lesson </h1>
+<p>We will contact you </p>
+
 {% endblock %}

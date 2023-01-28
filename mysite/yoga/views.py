@@ -124,7 +124,20 @@ def register(request):
     return render(request, "register.html")
 
 
-@login_required
+@login_required(login_url='/yoga/accounts/login/', redirect_field_name='next')
 def booklesson(request):
     # Logic for creating and saving a new book object
-    return render(request, "book_lesson.html")
+    #lessonID = request.POST["lessonID"]
+    #print(lessonID)
+    if request.method == "POST":
+        lessonID = request.POST["lessonID"]
+        print(lessonID)
+        les = Lesson.objects.filter(id=lessonID)
+        print(les)
+        print(request.user)
+        messages.info(request, lessonID)
+    #LessonInstance.objects.create()
+        return render(request, "book_lesson.html")
+    else:
+        messages.error(request, "Book lesson againg")
+        return redirect("")
