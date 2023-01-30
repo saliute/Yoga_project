@@ -4,7 +4,6 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         ('yoga', '0007_alter_lessoninstance_status_and_more'),
     ]

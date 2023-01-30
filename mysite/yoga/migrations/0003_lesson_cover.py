@@ -4,7 +4,6 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         ('yoga', '0002_alter_lesson_options_alter_types_options_and_more'),
     ]

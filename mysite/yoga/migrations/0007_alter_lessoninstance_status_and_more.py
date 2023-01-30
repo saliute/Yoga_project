@@ -5,7 +5,6 @@ import tinymce.models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         ('yoga', '0006_alter_lesson_type_alter_type_name'),
     ]
@@ -14,7 +13,9 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='lessoninstance',
             name='status',
-            field=models.CharField(blank=True, choices=[('p', 'Planning'), ('a', 'Not available'), ('b', 'You can book'), ('r', 'Reserved')], default='p', help_text='Status', max_length=1),
+            field=models.CharField(blank=True,
+                                   choices=[('p', 'Planning'), ('a', 'Not available'), ('b', 'You can book'),
+                                            ('r', 'Reserved')], default='p', help_text='Status', max_length=1),
         ),
         migrations.AlterField(
             model_name='teacher',

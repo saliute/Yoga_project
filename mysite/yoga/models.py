@@ -8,7 +8,7 @@ from datetime import date
 from tinymce.models import HTMLField
 
 
-# Create your models here.
+
 class Type(models.Model):
     name = models.CharField('Title', max_length=200, help_text='Entry lesson title')
 
@@ -24,7 +24,6 @@ class Lesson(models.Model):
     title = models.CharField('Title', max_length=200)
     teacher = models.ForeignKey('Teacher', on_delete=models.SET_NULL, null=True, related_name='lessons')
     summary = models.TextField('Description', max_length=1000, help_text='Short lesson description')
-    # isbn = models.CharField('ISBN', max_length=13)
     type = models.ManyToManyField('Type', help_text='Please choose type of this lesson')
     cover = models.ImageField('Viršelis', upload_to='covers', null=True)
     price = models.IntegerField('Price', null=True)
@@ -41,7 +40,6 @@ class Lesson(models.Model):
         return reverse('lesson-detail', args=[str(self.id)])
 
     class Meta:
-        # ordering = ["title"]
         verbose_name = "Lesson"
         verbose_name_plural = "Lessons"
 
@@ -84,7 +82,6 @@ class LessonInstance(models.Model):
 class Teacher(models.Model):
     first_name = models.CharField('Name', max_length=100)
     last_name = models.CharField('Surname', max_length=100)
-    # description = models.TextField('Aprašymas', max_length=2000, default='bio')
     description = HTMLField(default="cia turi buti pamokos aprasymas")
 
     def display_lessons(self):
@@ -110,6 +107,7 @@ class Blog(models.Model):
 
     def __str__(self):
         return self.title
+
 
 class Gallery(models.Model):
     title = models.CharField('Title', max_length=200, null=True)

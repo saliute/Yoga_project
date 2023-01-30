@@ -5,7 +5,6 @@ import tinymce.models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         ('yoga', '0004_lessoninstance_student_alter_lesson_cover'),
     ]
