@@ -2,16 +2,16 @@
 {% block content %}
 {% load static %}
 <h1 xmlns:border="http://www.w3.org/1999/xhtml">Blog</h1>
-<p>Thoughts about life: </p>
 {% for blog_obj in blog %}
 <div>
 <p><b>
     {{blog_obj}}</b></p>
+    <p>
     {% if blog_obj.cover %}
-        <img src="{{ blog_obj.cover.url }}"  style="width:350px">
+        <img src="{{ blog_obj.cover.url }}"  style="max-height:200px;width: auto;float: left;margin-right: 1.5em;">
     {% else %}
         <img src="{% static 'img/no-image.png' %}" class="blog-img-post">
-    {% endif %}
+    {% endif %}</p>
     <p>{{ blog_obj.content  }}</p>
     <br></br>
 </div>

@@ -86,7 +86,7 @@ class LoanedLessonsByUserListView(LoginRequiredMixin, generic.ListView):
 
 
 def blog(request):
-    paginator = Paginator(Blog.objects.all(), 2)
+    paginator = Paginator(Blog.objects.all(), 5)
     page_number = request.GET.get('page')
     paged_blog = paginator.get_page(page_number)
     context = {
@@ -96,7 +96,7 @@ def blog(request):
 
 
 def gallery(request):
-    paginator = Paginator(Gallery.objects.all(), 2)
+    paginator = Paginator(Gallery.objects.all(), 5)
     page_number = request.GET.get('page')
     paged_gallery = paginator.get_page(page_number)
     context = {

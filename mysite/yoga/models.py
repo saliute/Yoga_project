@@ -105,7 +105,7 @@ class Teacher(models.Model):
 class Blog(models.Model):
     title = models.CharField('Title', max_length=200, null=True)
     date_created = models.DateTimeField(auto_now_add=True)
-    content = models.CharField('Description', max_length=1000, help_text='Short lesson description')
+    content = models.TextField('Description', max_length=1000, help_text='Short description')
     cover = models.ImageField('Viršelis', upload_to='covers', null=True)
 
     def __str__(self):
@@ -113,7 +113,7 @@ class Blog(models.Model):
 
 class Gallery(models.Model):
     title = models.CharField('Title', max_length=200, null=True)
-    content = models.CharField('Description', max_length=1000, help_text='Short photos description')
+    date_created = models.DateTimeField(auto_now_add=True)
     cover = models.ImageField('Viršelis', upload_to='covers', null=True)
 
     def __str__(self):
