@@ -1,0 +1,11 @@
+Yoga online puslapis turi šį funkcionalumą:
+Lentelė “Lessons” turi – ID numerį, pavadinimą, mokytojus, nuotrauką, kainą, rezerveciją, kur paspaudus useris gali rezervuotis pamoką.
+Lentelė “Teacher” turi – vardą, pavardę, pamoką, nuotrauką. Kiekvienam mokytojui yra priskirta pamoka ir ji aprašyta.
+Nuoroda “Blog” turi nuotraukas ir aprašymą.
+Nuoroda “Galerija” turi nuotraukų galeriją.
+Pagrindiniame puslapyje “ Home” yra susipažinimo video ir duomenys apie mokytojus, pamokas, kiek kartų lankosi puslapyje.
+Taip pat galimas prisijungimas ir atsijungimas useriui.
+Kiekvienas prisiregistrazvęs useris turi funkciją pasižiūrėti kokias pamokas turi rezervavęs.
+Jeigu useris nėra prisijungęs yra funkcija “registracija”, kuriame yra naudojamas emailas, slaptažodis ir slaptažodžio patvirtinimas.
+
+

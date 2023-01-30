@@ -142,16 +142,16 @@ def booklesson(request):
     if request.method == "POST":
         lessonID = request.POST["lessonID"]
         print(lessonID)
-        les = Lesson.objects.filter(id=lessonID)
+        # les = Lesson.objects.filter(id=lessonID)
         lesObj = Lesson.objects.get(id=lessonID)
         studentObj = User.objects.get(username=request.user)
-        print(les)
+        # print(les)
         print(lesObj)
         print(request.user)
-        messages.info(request, lessonID)
-        lessonInst = LessonInstance(lesson = lesObj, student = studentObj)
+        # messages.info(request, lessonID)
+        lessonInst = LessonInstance(lesson=lesObj, student=studentObj)
         lessonInst.save()
         return render(request, "book_lesson.html")
     else:
-        messages.error(request, "Book lesson againg")
-        return redirect("")
+        messages.error(request, "Book lesson again please")
+        return redirect('/yoga/lessons/')
