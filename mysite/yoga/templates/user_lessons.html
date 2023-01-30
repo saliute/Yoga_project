@@ -8,6 +8,7 @@
             href="{% url 'lesson-detail' lessoninst_obj.lesson.pk %}">{{ lessoninst_obj.lesson.title }}</a>
         {{ lessoninst_obj.due_back }}
     </li>
+    <p>The status is {{ lessoninst_obj.get_status_display }} </p>
     {% endfor %}
 </ul>
 {% else %}

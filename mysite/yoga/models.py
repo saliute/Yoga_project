@@ -24,12 +24,12 @@ class Lesson(models.Model):
     title = models.CharField('Title', max_length=200)
     teacher = models.ForeignKey('Teacher', on_delete=models.SET_NULL, null=True, related_name='lessons')
     summary = models.TextField('Description', max_length=1000, help_text='Short lesson description')
-    type = models.ManyToManyField('Type', help_text='Please choose type of this lesson')
+    lesson_type = models.ManyToManyField('Type', help_text='Please choose type of this lesson')
     cover = models.ImageField('Viršelis', upload_to='covers', null=True)
     price = models.IntegerField('Price', null=True)
 
     def display_type(self):
-        return '; '.join([type.name for type in self.type.all()])
+        return '; '.join([type.name for type in self.lesson_type.all()])
 
     display_type.short_description = 'Type'
 
