@@ -15,5 +15,5 @@ urlpatterns = [
     path('blog/', views.blog, name='blog-detail'),
     path('register/', views.register, name='register'),
     path('book/', views.booklesson, name='book-lesson'),
-
+    path('gallery/', views.gallery, name='gallery-detail'),
 ]

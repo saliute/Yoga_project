@@ -8,7 +8,7 @@ from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
 
-from .models import Teacher, Lesson, LessonInstance, Blog
+from .models import Teacher, Lesson, LessonInstance, Blog, Gallery
 
 
 def index(request):
@@ -93,6 +93,16 @@ def blog(request):
         'blog': paged_blog
     }
     return render(request, 'blog.html', context=context)
+
+
+def gallery(request):
+    paginator = Paginator(Gallery.objects.all(), 2)
+    page_number = request.GET.get('page')
+    paged_gallery = paginator.get_page(page_number)
+    context = {
+        'gallery': paged_gallery
+    }
+    return render(request, 'gallery.html', context=context)
 
 
 @csrf_protect

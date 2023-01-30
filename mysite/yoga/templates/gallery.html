@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block content %}
+{% load static %}
+
+<h1>Gallery</h1>
+<p>Yoga photos: </p>
+{% for gallery_obj in gallery %}
+<li><a href="{% url 'gallery-detail' %}">
+    {{gallery_obj}} </a></li>
+    {% if gallery_obj.cover %}
+        <img src="{{ gallery_obj.cover.url }}" class="card-img-top">
+    {% else %}
+        <img src="{% static 'img/no-image.png' %}" class="card-img-top">
+    {% endif %}
+{% endfor %}
+<div>
+    <h4>{{ gallery.date_created  }} {{ gallery.cover }}</h4>
+    <hr/>
+    <p>{{ gallery.description | safe }}</p>
+    <hr/>
+</div>
+{% endblock %}

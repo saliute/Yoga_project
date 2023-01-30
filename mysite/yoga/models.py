@@ -111,3 +111,10 @@ class Blog(models.Model):
     def __str__(self):
         return self.title
 
+class Gallery(models.Model):
+    title = models.CharField('Title', max_length=200, null=True)
+    content = models.CharField('Description', max_length=1000, help_text='Short photos description')
+    cover = models.ImageField('Viršelis', upload_to='covers', null=True)
+
+    def __str__(self):
+        return self.title
